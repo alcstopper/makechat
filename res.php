@@ -22,7 +22,7 @@ if(!empty($_POST)) {
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<title>study res</title>
+	<title>chat res</title>
 	<link rel="stylesheet" href="style.css" />
 <body>
 	<form action="" method="post">

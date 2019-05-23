@@ -25,13 +25,15 @@ if(!empty($_POST)) {
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<title>study</title>
+	<title>makechat</title>
 	<link rel="stylesheet" href="style.css" />
 <body>
 	<form action="" method="post">
 		<p>スレッド名</p>
 		<textarea name="thread_name" rows="2" cols="30"></textarea>
 		<input type="submit" value="作成" />
+		<!-- resのidを取得してres.phpに送る -->
+		<input type="hidden" value="res.php?id" />
 	</form>
 	<h1>スレッド</h1>
 	<!-- メッセージ一覧を表示する -->
