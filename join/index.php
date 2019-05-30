@@ -12,7 +12,7 @@ if(!empty($_POST)){
 	if($_POST['email'] === ''){
 		$error['email'] = 'blank';
 	}
-// パスワードが４文字未満ならエラー
+	// パスワードが４文字未満ならエラー
 	if(strlen($_POST['password']) < 4){
 		$error['password'] = 'length';
 	}
@@ -47,37 +47,37 @@ if(!empty($_POST)){
 if($_REQUEST['action'] == 'rewrite' && isset($_SESSION['join'])) {
 	$_POST = $_SESSION['join'];
 }
- ?>
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<title>会員登録画面</title>
 	<link rel="stylesheet" href="style.css" />
-<body>
-	<form action="" method="post">
-		<p>名前<input type="text" name="name" size="35" maxlength="255" value="<?php print(htmlspecialchars($_POST['name'],ENT_QUOTES));?>" /></p>
-		<?php if($error['name'] === 'blank'): ?>
-			<p class="error">名前を入力してください</p>
-		<?php endif; ?>
+	<body>
+		<form action="" method="post">
+			<p>名前<input type="text" name="name" size="35" maxlength="255" value="<?php print(htmlspecialchars($_POST['name'],ENT_QUOTES));?>" /></p>
+			<?php if($error['name'] === 'blank'): ?>
+				<p class="error">名前を入力してください</p>
+			<?php endif; ?>
 
-		<p>メールアドレス<input type="text" name="email" size="35" maxlength="255" value="<?php print(htmlspecialchars($_POST['email'],ENT_QUOTES));?>" /></p>
-		<?php if($error['email'] === 'blank'): ?>
-			<p class="error">メールアドレスを入力してください</p>
-		<?php endif; ?>
-		<?php if($error['email'] === 'duplicate'): ?>
-			<p class="error">指定されたメールアドレスは既に登録されています</p>
-		<?php endif; ?>
+			<p>メールアドレス<input type="text" name="email" size="35" maxlength="255" value="<?php print(htmlspecialchars($_POST['email'],ENT_QUOTES));?>" /></p>
+			<?php if($error['email'] === 'blank'): ?>
+				<p class="error">メールアドレスを入力してください</p>
+			<?php endif; ?>
+			<?php if($error['email'] === 'duplicate'): ?>
+				<p class="error">指定されたメールアドレスは既に登録されています</p>
+			<?php endif; ?>
 
-		<p>パスワード<input type="text" name="password" size="35" maxlength="255" value="<?php print(htmlspecialchars($_POST['password'],ENT_QUOTES));?>" /></p>
-		<?php if($error['password'] === 'length'): ?>
-			<p class="error">パスワードは4文字以上で入力してください</p>
-		<?php endif; ?>
-		<?php if($error['password'] === 'blank'): ?>
-			<p class="error">パスワードを入力してください</p>
-		<?php endif; ?>
+			<p>パスワード<input type="text" name="password" size="35" maxlength="255" value="<?php print(htmlspecialchars($_POST['password'],ENT_QUOTES));?>" /></p>
+			<?php if($error['password'] === 'length'): ?>
+				<p class="error">パスワードは4文字以上で入力してください</p>
+			<?php endif; ?>
+			<?php if($error['password'] === 'blank'): ?>
+				<p class="error">パスワードを入力してください</p>
+			<?php endif; ?>
 
-		<input type="submit" value="確認"/>
-	</form>
-</body>
-</html>
+			<input type="submit" value="確認"/>
+		</form>
+	</body>
+	</html>

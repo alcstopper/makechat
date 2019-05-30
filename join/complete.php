@@ -7,10 +7,10 @@
 	<link rel="stylesheet" href="../style.css" />
 </head>
 <body>
-<h1>会員登録</h1>
+	<h1>会員登録</h1>
 
-<p>ユーザー登録が完了しました</p>
-<p><a href="../login.php">ログインする</a></p>
+	<p>ユーザー登録が完了しました</p>
+	<p><a href="../login.php">ログインする</a></p>
 
 </div>
 </body>
