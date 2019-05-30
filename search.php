@@ -12,11 +12,11 @@ if(!empty($_GET)){
   }
   // talkの書込みがあれば
   if($_GET['usersearch'] !== '') {
-    $sql = $db->prepare("SELECT name FROM members WHERE name=?");
+    $sql = $db->prepare("SELECT id, name FROM members WHERE name=?");
     $sql->execute(array(
       $user));
     }
-    $search_result = $db->query("SELECT name FROM members WHERE name='{$user}'");
+    $search_result = $db->query("SELECT id, name FROM members WHERE name='{$user}'");
   }
   ?>
   <!DOCTYPE html>
@@ -34,7 +34,7 @@ if(!empty($_GET)){
       <?php if(!empty($_GET)): ?>
         <?php foreach ($search_result as $username): ?>
           <!-- エスケープ処理をしてhtmlに表示し、ENT_QUOTESでシングルクォーテーションとダブルクォーテーションの区別をなくす -->
-          <p><a href=ajaxres.php?t_name=<?php print(htmlspecialchars($username['name'], ENT_QUOTES)); ?>><?php print(htmlspecialchars($username['name'], ENT_QUOTES)); ?></a></p>
+          <p><a href=create_thread.php?id=<?php print(htmlspecialchars($username['id'], ENT_QUOTES)); ?>><?php print(htmlspecialchars($username['name'], ENT_QUOTES)); ?></a></p>
         <?php endforeach; ?>
       <?php endif; ?>
       <?php if($error['usersearch'] === 'blank'): ?>

@@ -1,6 +1,5 @@
 <?php
 	session_start();
-
 	// データベースに問い合わせ
 	require('dbconnect.php');
 	require('createdb.php');
@@ -20,9 +19,27 @@
 		header('Location: login.php');
 		exit();
 	}
-	$login_id=$member['id'];
-	// 投稿したスレッド名の一覧をユーザーのIDに関連付けて表示する
-	$threads = $db->query("SELECT t.thread_name FROM members m, threads t WHERE ('{$login_id}'=t.member_id OR '{$login_id}'=t.partner_id) AND '{$login_id}'=m.id");
+
+	// 作成ボタンがクリックされたとき
+	if(!empty($_POST)) {
+		// スレッド名の書込みがあれば
+		if($_POST['thread_name'] !== '') {
+			// データベースにアクセスして値を挿入する
+			$thread_name = $db->prepare('INSERT INTO threads SET thread_name=?, partner_id=?, member_id=?');
+			// ?の値に配列で値を入れる
+			$thread_name->execute(array(
+				$_POST['thread_name'],
+				$_GET['id'],
+				$member['id'],));
+			// スレッド内のテーブル作成
+			$db->query($res_sql);
+			// 外部キーを設定する
+			// $db->query($refer_sql);
+			// index.phpを自動的に呼び出し、ポストの値を空にする
+			header('Location: index.php');
+			exit();
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -31,17 +48,12 @@
 	<title>makechat</title>
 	<link rel="stylesheet" href="style.css" />
 </head>
-<header>
-<p><a href=search.php>友達検索</a></p>
-</header>
 	<body>
-		<h1>ユーザー : <?php print(htmlspecialchars($member['name'], ENT_QUOTES)); ?></h1>
-			<h1>トーク一覧</h1>
-			<!-- メッセージ一覧を表示する -->
-			<!-- $threadsの配列の中身を繰り返し精査しながら$thread変数に渡し、最後まで精査が終わったら繰り返しを終える -->
-			<?php foreach ($threads as $thread): ?>
-				<!-- エスケープ処理をしてhtmlに表示し、ENT_QUOTESでシングルクォーテーションとダブルクォーテーションの区別をなくす -->
-				<p><a href=ajaxres.php?t_name=<?php print(htmlspecialchars($thread['thread_name'], ENT_QUOTES)); ?>><?php print(htmlspecialchars($thread['thread_name'], ENT_QUOTES)); ?></a>
-			<?php endforeach; ?>
+		<form action="" method="post">
+			<h1>ユーザー : <?php print(htmlspecialchars($member['name'], ENT_QUOTES)); ?>
+				<p>スレッド名を入力してください</p>
+				<textarea name="thread_name" rows="2" cols="30"></textarea>
+				<input type="submit" value="作成" />
+		</form>
 	</body>
 </html>
