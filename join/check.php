@@ -21,30 +21,27 @@ if (!empty($_POST)) {
 	header('Location: complete.php');
 	exit();
 }
-
-
- ?>
-
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<title>会員登録</title>
 	<link rel="stylesheet" href="style.css" />
-<body>
-	<form action="" method="post">
+	<body>
+		<form action="" method="post">
 			<input type="hidden" name="action" value="submit" />
-		<p>名前</p>
-		<!-- SESSIONの値を連想配列で出力する -->
-		<p><?php print(htmlspecialchars($_SESSION['join']['name'],ENT_QUOTES));?></p>
+			<p>名前</p>
+			<!-- SESSIONの値を連想配列で出力する -->
+			<p><?php print(htmlspecialchars($_SESSION['join']['name'],ENT_QUOTES));?></p>
 
-		<p>メールアドレス</p>
-		<p><?php print(htmlspecialchars($_SESSION['join']['email'],ENT_QUOTES));?></p>
+			<p>メールアドレス</p>
+			<p><?php print(htmlspecialchars($_SESSION['join']['email'],ENT_QUOTES));?></p>
 
-		<p>パスワード</p>
-		<p>【非表示】</p>
-		<a href="index.php?action=rewrite">書き直す</a> | <input type="submit" value="登録する" />
-	</form>
+			<p>パスワード</p>
+			<p>【非表示】</p>
+			<a href="index.php?action=rewrite">書き直す</a> | <input type="submit" value="登録する" />
+		</form>
 
-</body>
-</html>
+	</body>
+	</html>

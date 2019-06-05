@@ -1,11 +1,14 @@
-<?php
+<?
+require('header.php');
 $_GET['t_name'];
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <title>CSS overflow</title>
+  <meta charset="UTF-8">
+  <title>チャットページ</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
   <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
   <script>
   var parameter = location.search;
@@ -31,12 +34,15 @@ $_GET['t_name'];
   </script>
 </head>
 <body>
-  <form action="res.php?t_name=<?php print(htmlspecialchars($_GET['t_name'], ENT_QUOTES)); ?>" method="post">
-    <h1><?php print $_GET['t_name']; ?></h1>
-    <textarea name="talk" rows="2" cols="30"></textarea>
-    <input type="submit" value="投稿" />
-  </form>
-  <p><a href=index.php>戻る</a></p>
-  <div id="text"></div>
+  <div id="wrap">
+    <div id="text"></div>
+    <div class="bottom_box">
+      <h1><?php print $_GET['t_name']; ?></h1>
+      <form action="res.php?t_name=<?php print(htmlspecialchars($_GET['t_name'], ENT_QUOTES)); ?>" method="post">
+        <textarea  class="talk_input" name="talk" rows="1" placeholder="メッセージを入力"></textarea>
+        <input type="submit" value="投稿" />
+      </form>
+    </div>
+  </div>
 </body>
 </html>

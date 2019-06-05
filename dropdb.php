@@ -1,12 +1,11 @@
 <?php
 require('dbconnect.php');
-$tabel_name = $_POST['thread_name'];
-// テーブル作成のSQLを作成
-// 変数部分はバッククォートで囲む
+$table = $message['thread_name'];
+$del_table = 'DROP TABLE IF EXISTS' .{$table};
+
 $res_sql = "CREATE TABLE `{$tabel_name}` (
   id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   talk TEXT(255) NOT NULL,
-  member_id INT(11) NOT NULL,
-  created DATETIME
+  member_id INT(11) NOT NULL
 ) default charset=utf8";
 ?>

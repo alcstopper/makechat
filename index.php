@@ -4,6 +4,7 @@ session_start();
 // データベースに問い合わせ
 require('dbconnect.php');
 require('createdb.php');
+require('header.php');
 // sessionにIDがセットされれいるか調べる
 // sessionにIDがあり、sessionされた時間が3600秒(1時間)より小さい場合
 if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
@@ -31,12 +32,9 @@ $threads = $db->query("SELECT t.* FROM members m, threads t WHERE ('{$login_id}'
 	<title>makechat</title>
 	<link rel="stylesheet" href="style.css" />
 </head>
-<header>
-	<p><a href=search.php>友達検索</a></p>
-</header>
 <body>
 	<h1>ユーザー : <?php print(htmlspecialchars($member['name'], ENT_QUOTES)); ?></h1>
-	<h1>トーク一覧</h1>
+	<h2>トーク</h2>
 	<!-- メッセージ一覧を表示する -->
 	<!-- $threadsの配列の中身を繰り返し精査しながら$thread変数に渡し、最後まで精査が終わったら繰り返しを終える -->
 	<?php foreach ($threads as $thread): ?>
@@ -46,6 +44,5 @@ $threads = $db->query("SELECT t.* FROM members m, threads t WHERE ('{$login_id}'
 		<a href="delete.php?id=<?php print(htmlspecialchars($thread['id'])); ?>">削除</a>
 		<?php endif; ?>
 		<?php endforeach; ?>
-
 	</body>
 	</html>

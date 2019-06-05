@@ -2,6 +2,7 @@
 session_start();
 // データベースに問い合わせ
 require('dbconnect.php');
+require('header.php');
 // $_POSTの値が空でなければ実行する
 if(!empty($_GET)){
   $user = $_GET['usersearch'];

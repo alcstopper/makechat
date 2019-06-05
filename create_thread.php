@@ -3,6 +3,7 @@ session_start();
 // データベースに問い合わせ
 require('dbconnect.php');
 require('createdb.php');
+require('header.php');
 // sessionにIDがセットされれいるか調べる
 // sessionにIDがあり、sessionされた時間が3600秒(1時間)より小さい場合
 if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
@@ -19,7 +20,6 @@ if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 	header('Location: login.php');
 	exit();
 }
-
 // 作成ボタンがクリックされたとき
 if(!empty($_POST)) {
 	// スレッド名の書込みがあれば
@@ -50,8 +50,7 @@ if(!empty($_POST)) {
 	</head>
 	<body>
 		<form action="" method="post">
-			<h1>ユーザー : <?php print(htmlspecialchars($member['name'], ENT_QUOTES)); ?>
-				<p>スレッド名を入力してください</p>
+				<h2>スレッド名を入力してください</h2>
 				<textarea name="thread_name" rows="2" cols="30"></textarea>
 				<input type="submit" value="作成" />
 			</form>

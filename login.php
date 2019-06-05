@@ -59,7 +59,7 @@ if(!empty($_POST)){
   <h1>ログインする</h1>
   <p>メールアドレスとパスワードを記入してログインしてください。</p>
   <p>入会手続きがまだの方はこちらからどうぞ。</p>
-  <p><a href="join/">入会手続きをする</a></p>
+  <p><a href="join/index.php">入会手続きをする</a></p>
   <form action="" method="post">
     <p>メールアドレス</p>
     <input type="text" name="email" size="35" maxlength="255" value="<?php print(htmlspecialchars($email, ENT_QUOTES)); ?>" />
